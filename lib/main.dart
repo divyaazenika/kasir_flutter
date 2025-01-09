@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
-import 'loginpage.dart';  // Mengimpor halaman loginpage
+import 'loginpage.dart';  
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:ukk_kasir/homepenjualan.dart';
+
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Supabase.initialize(
+    url:'https:vdaiftjeqmqhoiylczph.supabase.co',
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkYWlmdGplcW1xaG9peWxjenBoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzYzODI3MjAsImV4cCI6MjA1MTk1ODcyMH0.HbwTjEPylm-oYoTfevSPx6-T1mtnejuCYe3ZtRLsAPU' );
   runApp(const MyApp());
 }
 
@@ -11,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),  // Halaman pertama yang ditampilkan
+      home: LoginPage(),  // Halaman pertama yang ditampilkan
     );
   }
 }
@@ -90,7 +97,7 @@ class HomePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginPage()), // Navigasi ke LoginPage
+                        MaterialPageRoute(builder: (context) => MyHomePage(title: 'Home Penjualan'),)
                       );
                     },
                     child: Text('sing up'),

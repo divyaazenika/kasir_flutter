@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ukk_kasir/main.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: LoginPage(), // Memastikan nama widget menggunakan PascalCase
+      home: HomePage(), // Memastikan nama widget menggunakan PascalCase
     );
   }
 }
@@ -21,6 +22,9 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 181, 145, 186),
+      ),
       backgroundColor: Color.fromARGB(255, 181, 145, 186),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -42,7 +46,7 @@ class LoginPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 216, 198, 219), 
+                  color: Color.fromARGB(255, 83, 59, 87), 
                 ),
               ),
               SizedBox(height: 30), 
@@ -56,7 +60,7 @@ class LoginPage extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                LoginPage()),
+                                LoginPage()), // Navigasi ke halaman lain
                       );
                     },
                     child: Text('Registrasi'),
@@ -74,7 +78,7 @@ class LoginPage extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                LoginPage()), 
+                                HomePage()), // Navigasi ke halaman lain
                       );
                     },
                     child: Text('Login'),
@@ -94,5 +98,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
-
