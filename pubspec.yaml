@@ -36,6 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   supabase_flutter: ^2.8.0
+  loading_animation_widget: ^1.3.0
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +65,10 @@ flutter:
     - asset/reader-removebg-preview.png
     - asset/OIP-removebg-preview.png
     - asset/d1a7c007dc2b34561e39a2b6d6d874fe-removebg-preview.png
+    - asset/buku_broken_heart-removebg-preview (1).png
+    - asset/DREAMS-removebg-preview.png
+    - asset/HERBEWICTH-removebg-preview.png
+    - asset/Maxton_hall-removebg-preview.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

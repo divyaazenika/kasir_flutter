@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -23,109 +25,77 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return DefaultTabController(length:2,child: 
+    Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(widget.title),
-        backgroundColor: Color.fromARGB(255, 98, 72, 114),
+        backgroundColor: Color.fromARGB(255, 122, 106, 132),
         foregroundColor: Colors.white,
-        leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
+        // leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
+        
         actions: [
           IconButton(icon: Icon(Icons.search), onPressed: () {}),
-          IconButton(icon: Icon(Icons.grid_view), onPressed: () {}),
-          IconButton(icon: Icon(Icons.zoom_out_map), onPressed: () {}),
         ],
+        bottom: TabBar(
+          tabs:[
+            Tab(icon: Icon(Icons.person,color: Colors.white,), child: Text('coba', style: TextStyle(color: Colors.white),),),
+            Tab(icon: Icon(Icons.shopping_bag,color:  Colors .white,), child: Text('coba', style: TextStyle(color: Colors.white),),), 
+           
+          ]
+        ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: ['Semua', 'Jenis buku','costemesr']
-                  .map((label) => _buildCategoryButton(label))
-                  .toList(),
-            ),
-          ),
-          Visibility(
-            visible: isMakananVisible,
-            child: Expanded(
-              child: GridView.builder(
-                padding: EdgeInsets.all(16),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, 
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                  childAspectRatio: 0.8, 
-                ),
-                itemCount: 5, 
-                itemBuilder: (context, index) {
-                  String name;
-                  String imagePath;
-                  switch (index) {
-                    case 0:
-                      name = 'matematika pintar';
-                      imagePath = 'asset/image/choco.jpg';
-                      break;
-                    case 1:
-                      name = 'Oatmeal Raisin Cookies';
-                      imagePath = 'asset/image/otml.jpg';
-                      break;
-                    case 2:
-                      name = 'Birthday Cake Cookies';
-                      imagePath = 'asset/image/bckjpg.jpg';
-                      break;
-                    case 3:
-                      name = 'Red Velvet Cookies';
-                      imagePath = 'asset/image/rdvjpg.jpg';
-                      break;
-                    case 4:
-                      name = 'Matcha Cookies';
-                      imagePath = 'asset/image/mtcha.jpg';
-                      break;
-                    default:
-                      name = 'Unknown';
-                      imagePath = '';
-                  }
-
-                  return _buildCategoryItem(name, imagePath);
-                },
-              ),
-            ),
-          ),
-          
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                DropdownButton<String>(
-                  value: selectedOrderType ?? 'Tipe Order 1',
-                  items: ['Tipe Order 1', 'Tipe Order 2']
-                      .map((value) => DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          ))
-                      .toList(),
-                  onChanged: (newValue) {
-                    setState(() {
-                      selectedOrderType = newValue;
-                    });
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            SizedBox(
+              height: 100,
+              child: DrawerHeader(
+                child: ListTile(
+                  leading: Icon(Icons.arrow_back),
+                  title: Text(
+                    'Pengaturan dan Aktivitas',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
+                  ),
+                  onTap: () {
                   },
                 ),
-                Row(
-                  children: [
-                    IconButton(icon: Icon(Icons.shopping_cart), onPressed: () {}),
-                    IconButton(icon: Icon(Icons.person), onPressed: () {}),
-                  ],
-                ),
-                Text('2 Barang = Rp'),
-              ],
+              ),
             ),
-          ),
-        ],
+            ListTile(
+              leading: Icon(Icons.dashboard),
+              title: Text('Dashbord'),
+              onTap: () {},
+            ),
+             ListTile(
+              leading: Icon(Icons.bar_chart),
+              title: Text('Laporan'),
+              onTap: () {},
+             ),
+              ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Setting'),
+              onTap: () {},
+              ),
+               ListTile(
+              leading: Icon(Icons.arrow_back),
+              title: Text('Log Out'),
+              onTap: () {},
+              ),
+          ],
+        ),
       ),
-    );
+    
+      body: TabBarView(children: [
+        Center(child: Text('coba')),
+        Center(child: Text('coba1')),
+      ]
+      )
+    )
+          );
   }
 
   ElevatedButton _buildCategoryButton(String label) {
@@ -137,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
           });
         }
       },
-      style: ElevatedButton.styleFrom(backgroundColor: Colors.brown[800]),
+      style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 163, 129, 205)),
       child: Text(
         label,
         style: TextStyle(color: Colors.white),
@@ -236,3 +206,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
