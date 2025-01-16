@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:ukk_kasir/pelanggan/index.dart';
+import 'package:ukk_kasir/pelanggan/insert.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -25,77 +27,94 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(length:2,child: 
-    Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text(widget.title),
-        backgroundColor: Color.fromARGB(255, 122, 106, 132),
-        foregroundColor: Colors.white,
-        // leading: IconButton(icon: Icon(Icons.menu), onPressed: () {}),
-        
-        actions: [
-          IconButton(icon: Icon(Icons.search), onPressed: () {}),
-        ],
-        bottom: TabBar(
-          tabs:[
-            Tab(icon: Icon(Icons.person,color: Colors.white,), child: Text('coba', style: TextStyle(color: Colors.white),),),
-            Tab(icon: Icon(Icons.shopping_bag,color:  Colors .white,), child: Text('coba', style: TextStyle(color: Colors.white),),), 
-           
-          ]
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: Text(widget.title),
+          backgroundColor: Color.fromARGB(255, 122, 106, 132),
+          foregroundColor: Colors.white,
+          actions: [
+            IconButton(icon: Icon(Icons.search), onPressed: () {}),
+          ],
+          bottom: TabBar(
+            tabs: [
+              Tab(
+                icon: Icon(Icons.person, color: Colors.white),
+                child: Text('pelanggan', style: TextStyle(color: Colors.white)),
+              ),
+              Tab(
+                icon: Icon(Icons.shopping_bag, color: Colors.white),
+                child: Text('penjualan', style: TextStyle(color: Colors.white)),
+              ),
+              Tab(
+                icon: Icon(Icons.shopping_bag, color: Colors.white),
+                child: Text('produk', style: TextStyle(color: Colors.white),),
+              )
+            ],
+          ),
         ),
-      ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            SizedBox(
-              height: 100,
-              child: DrawerHeader(
-                child: ListTile(
-                  leading: Icon(Icons.arrow_back),
-                  title: Text(
-                    'Pengaturan dan Aktivitas',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15,
+        drawer: Drawer(
+          child: ListView(
+            children: [
+              SizedBox(
+                height: 100,
+                child: DrawerHeader(
+                  child: ListTile(
+                    leading: Icon(Icons.arrow_back),
+                    title: Text(
+                      'Pengaturan dan Aktivitas',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                      ),
                     ),
+                    onTap: () {},
                   ),
-                  onTap: () {
-                  },
                 ),
               ),
-            ),
-            ListTile(
-              leading: Icon(Icons.dashboard),
-              title: Text('Dashbord'),
-              onTap: () {},
-            ),
-             ListTile(
-              leading: Icon(Icons.bar_chart),
-              title: Text('Laporan'),
-              onTap: () {},
-             ),
               ListTile(
-              leading: Icon(Icons.settings),
-              title: Text('Setting'),
-              onTap: () {},
+                leading: Icon(Icons.dashboard),
+                title: Text('Dashbord'),
+                onTap: () {},
               ),
-               ListTile(
-              leading: Icon(Icons.arrow_back),
-              title: Text('Log Out'),
-              onTap: () {},
+              ListTile(
+                leading: Icon(Icons.bar_chart),
+                title: Text('Laporan'),
+                onTap: () {},
               ),
+              ListTile(
+                leading: Icon(Icons.settings),
+                title: Text('Setting'),
+                onTap: () {},
+              ),
+              ListTile(
+                leading: Icon(Icons.arrow_back),
+                title: Text('Log Out'),
+                onTap: () {},
+              ),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            PelangganTab(),
+            Center(child: Text('coba1')),
           ],
         ),
+        // FloatingActionButton added here
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(context,
+             MaterialPageRoute(builder: (context) => AddPelanggan())
+            );
+          },
+          backgroundColor: Color.fromARGB(255, 122, 106, 132),
+          child: Icon(Icons.add), // Icon for "Tambah"
+        ),
       ),
-    
-      body: TabBarView(children: [
-        Center(child: Text('coba')),
-        Center(child: Text('coba1')),
-      ]
-      )
-    )
-          );
+    );
   }
 
   ElevatedButton _buildCategoryButton(String label) {
@@ -127,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
-              child: Image.asset(imagePath, fit: BoxFit.cover), 
+              child: Image.asset(imagePath, fit: BoxFit.cover),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -206,4 +225,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-

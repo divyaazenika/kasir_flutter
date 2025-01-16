@@ -39,7 +39,7 @@ class _PelangganTabState extends State<PelangganTab> {
 
   Future<void> deletePelanggan(int id) async {
     try {
-      await Supabase.instance.client.from('pelanggan').delete().eq('Pelangganid', id);
+      await Supabase.instance.client.from('pelanggan').delete().eq('idpelanggan', id);
       fetchPelanggan();
     } catch (e) {
       print('Error deleting pelanggan: $e');
@@ -51,7 +51,7 @@ class _PelangganTabState extends State<PelangganTab> {
     return Scaffold(
       body: isLoading
           ? Center(
-              child: LoadingAnimationWidget.stretchedDots(
+              child: LoadingAnimationWidget.inkDrop(
                 size: 200,
                 color: Colors.black
               )
@@ -83,21 +83,21 @@ class _PelangganTabState extends State<PelangganTab> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              langgan['NamaPelanggan'] ?? 'Pelanggan tidak tersedia',
+                              langgan['namapelanggan'] ?? 'Pelanggan tidak tersedia',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 20,
                               ),
                             ),
                             SizedBox(height: 4),
                             Text(
-                              langgan['Alamat'] ?? 'Alamat Tidak tersedia',
+                              langgan['alamat'] ?? 'Alamat Tidak tersedia',
                               style: TextStyle(
                                 fontStyle: FontStyle.italic, fontSize: 16, color: Colors.grey,
                               ),
                             ),
                             SizedBox(height: 8),
                             Text(
-                              langgan['NomorTelepon'] ?? 'Tidak tersedia',
+                              langgan['nomertelepon'] ?? 'Tidak tersedia',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 14,
                               ),
@@ -110,12 +110,12 @@ class _PelangganTabState extends State<PelangganTab> {
                                 IconButton(
                                   icon: const Icon(Icons.edit, color: Colors.purple),
                                   onPressed: () {
-                                    final Pelangganid = langgan['Pelangganid'] ?? 0; // Pastikan ini sesuai dengan kolom di database
-                                    if (Pelangganid != 0) {
+                                    final idpelanggan= langgan['idpelanggan'] ?? 0; // Pastikan ini sesuai dengan kolom di database
+                                    if (idpelanggan != 0) {
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                          builder: (context) => EditPelanggan(Pelangganid: Pelangganid),
+                                          builder: (context) => EditPelanggan(idpelanggan: idpelanggan),
                                         ),
                                       );
                                     } else {
@@ -139,7 +139,7 @@ class _PelangganTabState extends State<PelangganTab> {
                                             ),
                                             TextButton(
                                               onPressed: () {
-                                                deletePelanggan(langgan['Pelangganid']);
+                                                deletePelanggan(langgan['idpelanggan']);
                                                 Navigator.pop(context);
                                               },
                                               child: const Text('Hapus'),

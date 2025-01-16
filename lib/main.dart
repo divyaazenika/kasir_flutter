@@ -100,7 +100,7 @@ class HomePage extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => MyHomePage(title: 'Home Penjualan'),)
                       );
                     },
-                    child: Text('sing up'),
+                    child: Text('sing in'),
                     style: ElevatedButton.styleFrom(
                       iconColor: Colors.purple, 
                       padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),

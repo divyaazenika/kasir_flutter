@@ -6,9 +6,9 @@ import 'package:ukk_kasir/pelanggan/insert.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class EditPelanggan extends StatefulWidget {
-  final int Pelangganid;
+  final int idpelanggan;
 
-  const EditPelanggan({super.key, required this.Pelangganid});
+  const EditPelanggan({super.key, required this.idpelanggan});
 
   @override
   State<EditPelanggan> createState() => _EditPelangganState();
@@ -31,13 +31,13 @@ class _EditPelangganState extends State<EditPelanggan> {
     final data = await Supabase.instance.client
         .from('pelanggan')
         .select()
-        .eq('Pelangganid', widget.Pelangganid)
+        .eq('idpelanggan', widget.idpelanggan)
         .single();
 
     setState(() {
-      _nmplg.text = data['NamaPelanggan'] ?? '';
-      _alamat.text = data['Alamat'] ?? '';
-      _notlp.text = data['NomorTelepon'] ?? '';
+      _nmplg.text = data['namapelanggan'] ?? '';
+      _alamat.text = data['alamat'] ?? '';
+      _notlp.text = data['nomertelepon'] ?? '';
     });
   }
 
@@ -46,15 +46,15 @@ Future<void> updatePelanggan() async {
   if (_formKey.currentState!.validate()) {
     // Melakukan update data pelanggan ke database
     await Supabase.instance.client.from('pelanggan').update({
-      'NamaPelanggan': _nmplg.text,
-      'Alamat': _alamat.text,
-      'NomorTelepon': _notlp.text,
-    }).eq('Pelangganid', widget.Pelangganid);
+      'namapelanggan': _nmplg.text,
+      'alamat': _alamat.text,
+      'nomertelepon': _notlp.text,
+    }).eq('idpelanggan', widget.idpelanggan);
 
     // Navigasi ke PelangganTab setelah update, dengan menghapus semua halaman sebelumnya dari stack
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => HomePage()),
+      MaterialPageRoute(builder: (context) => PelangganTab()),
       (route) => false, // Hapus semua halaman sebelumnya
     );
   }
@@ -78,7 +78,7 @@ Future<void> updatePelanggan() async {
               TextFormField(
                 controller: _nmplg,
                 decoration: const InputDecoration(
-                  labelText: 'Nama Pelanggan',
+                  labelText: 'namapelanggan',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {
@@ -92,7 +92,7 @@ Future<void> updatePelanggan() async {
               TextFormField(
                 controller: _alamat,
                 decoration: const InputDecoration(
-                  labelText: 'Alamat',
+                  labelText: 'alamat',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {
@@ -106,7 +106,7 @@ Future<void> updatePelanggan() async {
               TextFormField(
                 controller: _notlp,
                 decoration: const InputDecoration(
-                  labelText: 'Nomor Telepon',
+                  labelText: 'nomertelepon',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {
@@ -120,6 +120,7 @@ Future<void> updatePelanggan() async {
               ElevatedButton(
                 onPressed: updatePelanggan,
                 child: const Text('Update'),
+                
               ),
             ],
           ),

@@ -1,8 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ukk_kasir/homepenjualan.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:ukk_kasir/main.dart';
+import 'package:ukk_kasir/pelanggan/index.dart';
 
 class AddPelanggan extends StatefulWidget {
   const AddPelanggan({super.key});
@@ -19,24 +21,23 @@ class _AddPelangganState extends State<AddPelanggan> {
 
   Future<void> langgan() async {
     if (_formKey.currentState!.validate()) {
-      final String NamaPelanggan = _nmplg.text;
-      final String Alamat = _alamat.text;
-      final String NomorTelepon = _notlp.text;
+      final String namapelanggan = _nmplg.text;
+      final String alamat = _alamat.text;
+      final String nomertelepon = _notlp.text;
 
       final response = await Supabase.instance.client.from('pelanggan').insert([
         {
-          'NamaPelanggan': NamaPelanggan,
-          'Alamat': Alamat,
-          'NomorTelepon': NomorTelepon,
+          'namapelanggan': namapelanggan,
+          'alamat': alamat,
+          'nomertelepon': nomertelepon,
         }
       ]);
 
       // Cek jika ada error pada response
-      if (response.error != null) {
+      if (response == null) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
-        );
+          MaterialPageRoute(builder: (context) => PelangganTab()));
       } else {
         Navigator.pushReplacement(
           context,
@@ -62,7 +63,7 @@ class _AddPelangganState extends State<AddPelanggan> {
               TextFormField(
                 controller: _nmplg,
                 decoration: const InputDecoration(
-                  labelText: 'Nama Pelanggan',
+                  labelText: 'namapelanggan',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {
@@ -76,7 +77,7 @@ class _AddPelangganState extends State<AddPelanggan> {
               TextFormField(
                 controller: _alamat,
                 decoration: const InputDecoration(
-                  labelText: 'Alamat',
+                  labelText: 'alamat',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {
@@ -89,8 +90,9 @@ class _AddPelangganState extends State<AddPelanggan> {
               const SizedBox(height: 16),
               TextFormField(
                 controller:_notlp,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 decoration: const InputDecoration(
-                  labelText: 'Nomer Telepon',
+                  labelText: 'nomertelepon',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {
