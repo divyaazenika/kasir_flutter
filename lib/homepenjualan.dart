@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:ukk_kasir/pelanggan/index.dart';
 import 'package:ukk_kasir/pelanggan/insert.dart';
+import 'package:ukk_kasir/penjualan/indexpenjualan.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -100,19 +101,11 @@ class _MyHomePageState extends State<MyHomePage> {
         body: TabBarView(
           children: [
             PelangganTab(),
-            Center(child: Text('coba1')),
+            PenjualanTab()
           ],
         ),
         // FloatingActionButton added here
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(context,
-             MaterialPageRoute(builder: (context) => AddPelanggan())
-            );
-          },
-          backgroundColor: Color.fromARGB(255, 122, 106, 132),
-          child: Icon(Icons.add), // Icon for "Tambah"
-        ),
+        
       ),
     );
   }

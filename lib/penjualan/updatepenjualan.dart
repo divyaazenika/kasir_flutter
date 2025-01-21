@@ -53,7 +53,7 @@ class _PenjualanUpdateState extends State<PenjualanUpdate> {
           'TanggalPenjualan': _tglController.text,
           'Harga': double.tryParse(_hrgController.text) ?? 0,
           'Pelangganid': _pelangganController.text,
-        }).eq('Pelangganid', widget.idpenjualan);
+        }).eq('idpenjualan', widget.idpenjualan);
 
         Navigator.pushAndRemoveUntil(
           context,
@@ -124,7 +124,7 @@ class _PenjualanUpdateState extends State<PenjualanUpdate> {
               TextFormField(
                 controller: _pelangganController,
                 decoration: InputDecoration(
-                  labelText: 'Pelanggan ID',
+                  labelText: 'pelangganid',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {

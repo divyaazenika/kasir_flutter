@@ -93,7 +93,7 @@ class _PenjualanTabState extends State<PenjualanTab> {
                                 'Total Harga: ${jual['totalharga'] ?? 'Tidak tersedia'}',
                                 style: TextStyle(
                                   fontStyle: FontStyle.italic, fontSize: 16, color: Colors.grey,
-                                ),
+                                )
                               ),
                               SizedBox(height: 8),
                               Text(
@@ -161,7 +161,7 @@ class _PenjualanTabState extends State<PenjualanTab> {
                 ),
       floatingActionButton: FloatingActionButton(
         onPressed: () { 
-          Navigator.push(context, MaterialPageRoute(builder: (context) => PenjualanTab()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => AddTransaksi()));
 
         },
         child: Icon(Icons.add),

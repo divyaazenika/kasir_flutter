@@ -19,18 +19,19 @@ class _AddTransaksiState extends State<AddTransaksi> {
 
   Future<void> transaksi() async {
     if (_formKey.currentState!.validate()) {
-      final String tanggalPenjualan = _tgl.text;
-      final double totalHarga = double.tryParse(_hrg.text) ?? 0;
+      final String tanggalpenjualan = _tgl.text;
+      final double totalharga = double.tryParse(_hrg.text) ?? 0;
       final int idpenjualan = int.tryParse(_pelanggan.text) ?? 0;
 
       final response = await Supabase.instance.client.from('penjualan').insert(
         {
-          'tanggalpenjualan': tanggalPenjualan,
-          'totalharga': totalHarga,
+          'tanggalpenjualan': tanggalpenjualan,
+          'totalharga': totalharga,
           'idpenjualan': idpenjualan,
         }
       );
-      if (response != null) {
+      
+      if (response.error == null) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => PenjualanTab()),
