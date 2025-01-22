@@ -98,7 +98,7 @@ class _addprodukState extends State<addproduk> {
               ),
               SizedBox(height: 16),
               ElevatedButton(onPressed: produk,
-              child: Text('Tambah'))
+              child: Text('Tambah')),
             ],
           ),
         ),

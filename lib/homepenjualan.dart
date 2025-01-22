@@ -1,9 +1,9 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:ukk_kasir/pelanggan/index.dart';
 import 'package:ukk_kasir/pelanggan/insert.dart';
 import 'package:ukk_kasir/penjualan/indexpenjualan.dart';
+import 'package:ukk_kasir/produk/insert.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -29,7 +29,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 4,
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -52,6 +52,10 @@ class _MyHomePageState extends State<MyHomePage> {
               Tab(
                 icon: Icon(Icons.shopping_bag, color: Colors.white),
                 child: Text('produk', style: TextStyle(color: Colors.white),),
+              ),
+              Tab(
+                icon: Icon(Icons.payment, color:  Colors.white),
+                child: Text('detailpenjualan', style: TextStyle(color: Colors.white),),
               )
             ],
           ),
@@ -101,7 +105,8 @@ class _MyHomePageState extends State<MyHomePage> {
         body: TabBarView(
           children: [
             PelangganTab(),
-            PenjualanTab()
+            PenjualanTab(),
+            ProdukTab(),
           ],
         ),
         // FloatingActionButton added here

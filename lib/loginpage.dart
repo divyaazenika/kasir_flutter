@@ -67,7 +67,7 @@ class LoginPage extends StatelessWidget {
                     style: ElevatedButton.styleFrom(
                       iconColor: Colors.purple,
                       padding:
-                          EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                          EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                       textStyle: TextStyle(fontSize: 18),
                     ),
                   ),

@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:ukk_kasir/homepenjualan.dart';
+import 'package:ukk_kasir/main.dart';
 import 'package:ukk_kasir/produk/index.dart';
 import 'package:ukk_kasir/produk/insert.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -31,7 +33,7 @@ class _ProdukTabState extends State<ProdukTab> {
         isLoading = false;
       });
     } catch (e) {
-      print('error: $e');
+      print(': $e');
       setState(() {
         isLoading = false;
       });
@@ -42,7 +44,7 @@ class _ProdukTabState extends State<ProdukTab> {
       await Supabase.instance.client.from('produk').delete().eq('id', id);
       fetchProduk();
     }catch (e) {
-      print('error: $e');
+      print(': $e');
     }
   }
   Widget build(BuildContext context) {
@@ -74,8 +76,8 @@ class _ProdukTabState extends State<ProdukTab> {
               borderRadius: BorderRadius.circular(12)
             ),
             child: SizedBox(
-              height: 150,
-              width: 20,
+              height: 50,
+              width: 10,
               child: Padding(
                 padding: EdgeInsets.all(12),
                 child: Column(

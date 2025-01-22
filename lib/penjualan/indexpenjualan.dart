@@ -97,7 +97,7 @@ class _PenjualanTabState extends State<PenjualanTab> {
                               ),
                               SizedBox(height: 8),
                               Text(
-                                'idpenjualan: ${jual['idpelanggan'] ?? 'Tidak tersedia'}',
+                                'pelangganid: ${jual['pelangganid'] ?? 'Tidak tersedia'}',
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 14,
                                 ),
@@ -139,7 +139,7 @@ class _PenjualanTabState extends State<PenjualanTab> {
                                               ),
                                               TextButton(
                                                 onPressed: () {
-                                                  deleteBarang(jual['Penjualanid']);
+                                                  deleteBarang(jual['idpenjualan']);
                                                   Navigator.pop(context);
                                                 },
                                                 child: const Text('Hapus'),
