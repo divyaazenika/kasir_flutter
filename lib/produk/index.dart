@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ukk_kasir/homepenjualan.dart';
 import 'package:ukk_kasir/penjualan/indexpenjualan.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:ukk_kasir/produk/insert.dart';
 
 class addproduk extends StatefulWidget {
   const addproduk({super.key});
@@ -29,13 +30,13 @@ class _addprodukState extends State<addproduk> {
           'stok': stok,
         }
       ]);
-      if (response.error != null) {
+      if (response!= null) {
         Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => PenjualanTab()),
+        MaterialPageRoute(builder: (context) => ProdukTab())
         );
       } else {
         Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (context) => PenjualanTab()),
+        MaterialPageRoute(builder: (context) => ProdukTab())
         );
       }
     }

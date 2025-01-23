@@ -99,7 +99,7 @@ Future<void> UpdateProduk() async {
               TextFormField(
                 controller: _stok,
                 decoration: const InputDecoration(
-                  labelText: 'Stok',
+                  labelText: 'stok',
                   border: OutlineInputBorder(),
                 ),
                 validator: (value) {

@@ -37,11 +37,11 @@ class _AddPelangganState extends State<AddPelanggan> {
       if (response == null) {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => PelangganTab()));
+          MaterialPageRoute(builder: (context) => MyHomePage(title: 'Home Penjualan')));
       } else {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(builder: (context) => MyHomePage(title: 'Home Penjualan'))
         );
       }
     }

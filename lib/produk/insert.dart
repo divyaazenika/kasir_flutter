@@ -41,7 +41,7 @@ class _ProdukTabState extends State<ProdukTab> {
   }
   Future<void> deleteProduk(int id) async{
     try{
-      await Supabase.instance.client.from('produk').delete().eq('id', id);
+      await Supabase.instance.client.from('produk')..delete().eq('idproduk', id);
       fetchProduk();
     }catch (e) {
       print(': $e');
@@ -103,13 +103,70 @@ class _ProdukTabState extends State<ProdukTab> {
                         fontWeight: FontWeight.bold, fontSize: 20,
                       ),
                     ),
-                  ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        IconButton(
+                          icon: const Icon(Icons.edit, color: Color.fromARGB(255, 110, 75, 138)),
+                          onPressed: () {
+                            final produkid= ['produkid'] ?? 0;
+                            if (produkid != 0)  {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (Context) => ProdukTab()
+                                   ), 
+                              );
+                            
+                            }else {
+                              print('ID pelanggan tidak valid');
+                            }
+                          },
+                        )
+                      ],
+
+                    ),
+                    Row(),
+                              IconButton(
+                                icon: const Icon(Icons.delete,
+                                    color: Color.fromARGB(255, 125, 82, 255)),
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: const Text('Hapus Produk'),
+                                        content: const Text(
+                                            'Apakah Anda yakin ingin menghapus produk ini?'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(context),
+                                            child: const Text('Batal'),
+                                          ),
+                                          TextButton(
+                                            onPressed: () {
+                                              final produkid = prd['idproduk'];
+                                              if (produkid != null) {
+                                                deleteProduk(produkid); // Delete the product by ID
+                                              }
+                                              Navigator.pop(context);
+                                            },
+                                            child: const Text('Hapus'),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+                              )
+                  ]
                 ),
               ),
             ),
           );
         },
       ),
+      
     floatingActionButton: FloatingActionButton(
       onPressed: () {
         Navigator.push(context,

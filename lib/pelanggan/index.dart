@@ -163,7 +163,7 @@ class _PelangganTabState extends State<PelangganTab> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => MyHomePage(title: 'MyHomePage',)),
+            MaterialPageRoute(builder: (context) => AddPelanggan())
           );
         },
         child: Icon(Icons.add),
