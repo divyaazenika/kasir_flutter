@@ -6,6 +6,7 @@ import 'package:ukk_kasir/produk/index.dart';
 import 'package:ukk_kasir/produk/insert.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:ukk_kasir/produk/update.dart';
 
 class ProdukTab extends StatefulWidget {
   const ProdukTab({super.key});
@@ -41,7 +42,7 @@ class _ProdukTabState extends State<ProdukTab> {
   }
   Future<void> deleteProduk(int id) async{
     try{
-      await Supabase.instance.client.from('produk')..delete().eq('idproduk', id);
+      await Supabase.instance.client.from('produk').delete().eq('idproduk', id);
       fetchProduk();
     }catch (e) {
       print(': $e');
@@ -109,12 +110,12 @@ class _ProdukTabState extends State<ProdukTab> {
                         IconButton(
                           icon: const Icon(Icons.edit, color: Color.fromARGB(255, 110, 75, 138)),
                           onPressed: () {
-                            final produkid= ['produkid'] ?? 0;
+                            final produkid= prd['produkid'] ?? 0;
                             if (produkid != 0)  {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (Context) => ProdukTab()
+                                  builder: (Context) => UpdateProduk(Produkid: produkid,)
                                    ), 
                               );
                             
@@ -128,8 +129,7 @@ class _ProdukTabState extends State<ProdukTab> {
                     ),
                     Row(),
                               IconButton(
-                                icon: const Icon(Icons.delete,
-                                    color: Color.fromARGB(255, 125, 82, 255)),
+                                icon: const Icon(Icons.delete, color: Color.fromARGB(255, 125, 82, 255)),
                                 onPressed: () {
                                   showDialog(
                                     context: context,
@@ -145,7 +145,7 @@ class _ProdukTabState extends State<ProdukTab> {
                                           ),
                                           TextButton(
                                             onPressed: () {
-                                              final produkid = prd['idproduk'];
+                                              final produkid = prd['produkid'];
                                               if (produkid != null) {
                                                 deleteProduk(produkid); // Delete the product by ID
                                               }

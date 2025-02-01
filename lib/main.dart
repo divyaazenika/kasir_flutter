@@ -58,21 +58,6 @@ class HomePage extends StatelessWidget {
           MaterialPageRoute(
               builder: (context) =>  MyHomePage(title: 'Home Penjualan',)), // Navigate to HomePage
         );
-
-        // if (response == null) {
-        //   ScaffoldMessenger.of(context).showSnackBar(
-        //     SnackBar(content: Text('Username tidak ditemukan!')),
-        //   );
-        //   return;
-        // }
-
-        // if (response['password'] == password) {
-
-        // } else {
-        //   ScaffoldMessenger.of(context).showSnackBar(
-        //     SnackBar(content: Text('Password salah!')),
-        //   );
-        // }
       } catch (e) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Email atau password salah')),
